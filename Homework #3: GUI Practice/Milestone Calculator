@@ -1,1 +1,95 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
 
+package student.milestonegradecalculator;
+
+/**
+ *
+ * @author SCHOOL
+ */
+import javax.swing.*;
+import java.awt.event.*;
+
+public class MilestoneGradeCalculator extends JFrame {
+    private JTextField milestone1Field, milestone2Field, terminalField, totalField;
+    private JButton calculateButton;
+
+    public MilestoneGradeCalculator() {
+        setTitle("Milestone Grade Calculator");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(350, 300);
+        setLayout(null);
+
+        JLabel m1Label = new JLabel("Milestone 1 (max 25):");
+        m1Label.setBounds(30, 30, 150, 25);
+        add(m1Label);
+
+        milestone1Field = new JTextField();
+        milestone1Field.setBounds(180, 30, 100, 25);
+        add(milestone1Field);
+
+        JLabel m2Label = new JLabel("Milestone 2 (max 40):");
+        m2Label.setBounds(30, 70, 150, 25);
+        add(m2Label);
+
+        milestone2Field = new JTextField();
+        milestone2Field.setBounds(180, 70, 100, 25);
+        add(milestone2Field);
+
+        JLabel terminalLabel = new JLabel("Terminal Exam (max 35):");
+        terminalLabel.setBounds(30, 110, 160, 25);
+        add(terminalLabel);
+
+        terminalField = new JTextField();
+        terminalField.setBounds(180, 110, 100, 25);
+        add(terminalField);
+
+        calculateButton = new JButton("Calculate Grade");
+        calculateButton.setBounds(100, 150, 150, 30);
+        add(calculateButton);
+
+        JLabel totalLabel = new JLabel("Final Grade:");
+        totalLabel.setBounds(30, 200, 100, 25);
+        add(totalLabel);
+
+        totalField = new JTextField();
+        totalField.setBounds(180, 200, 100, 25);
+        totalField.setEditable(false);
+        add(totalField);
+
+        calculateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double m1 = Double.parseDouble(milestone1Field.getText());
+                    double m2 = Double.parseDouble(milestone2Field.getText());
+                    double terminal = Double.parseDouble(terminalField.getText());
+
+                    // Validate input ranges
+                    if (m1 < 0 || m1 > 25) {
+                        throw new IllegalArgumentException("Milestone 1 must be between 0 and 25.");
+                    }
+                    if (m2 < 0 || m2 > 40) {
+                        throw new IllegalArgumentException("Milestone 2 must be between 0 and 40.");
+                    }
+                    if (terminal < 0 || terminal > 35) {
+                        throw new IllegalArgumentException("Terminal Assessment must be between 0 and 35.");
+                    }
+
+                    double total = m1 + m2 + terminal;
+                    totalField.setText(String.valueOf(total));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Please enter valid numeric values.");
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new MilestoneGradeCalculator();
+    }
+}
