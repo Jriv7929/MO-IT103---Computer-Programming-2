@@ -1,3 +1,13 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package payrollgui.payrollgui;
+
+/**
+ *
+ * @author SCHOOL
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -198,9 +208,7 @@ public class PayrollGUI extends JFrame {
         if (totalEarnings >= 666667) return 200833.33 + (totalEarnings - 666667) * 0.35;
         return 0.0;
     }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new PayrollGUI().setVisible(true));
     }
 }
-
